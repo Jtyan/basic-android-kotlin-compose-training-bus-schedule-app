@@ -12,9 +12,9 @@ If you made it a class, you'd have to implement every function manually (which d
 @Dao
 interface ScheduleDAO {
 
-    @Query("SELECT * FROM schedule ORDER BY arrivalTimeInMillis ASC")
+    @Query("SELECT * FROM schedule ORDER BY arrival_time ASC")
     fun getAllItems(): Flow<List<BusSchedule>>
 
-    @Query("SELECT * FROM schedule WHERE id = :id")
-    fun getItem(id: Int): Flow<BusSchedule>
+    @Query("SELECT * FROM schedule WHERE stop_name = :stopName ORDER BY arrival_time ASC")
+    fun getItem(stopName: String): Flow<List<BusSchedule>>
 }
